@@ -7,6 +7,9 @@
   &:focus {
     outline: none;
   }
+  &hover {
+    color: darken($color: $primary, $amount: 50);
+  }
 }
 .btn-primary {
   background-color: $primary;
@@ -17,10 +20,10 @@
   }
   &:hover {
     background-color: darken($color: $primary, $amount: 15);
-    transition: 0.4s ease;
+    transition: background-color 0.4s ease;
   }
 }
-.btn-block{
+.btn-block {
   width: 100%;
 }
 //Google Button
