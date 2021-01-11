@@ -4,9 +4,12 @@
   width: 100%;
 }
 .journal__sidebar {
-  background-color: $dark-grey;
-  color: white;
+  z-index: 1;
+  background-color: $light-grey;
+  color: $primary;
   display: flex;
+  box-shadow: -5px 0px 8px 5px #534d6b;
+
   flex-direction: column;
   height: 100vh;
   padding-left: 10px;
@@ -21,6 +24,7 @@
 }
 .journal__new-entry {
   align-items: center;
+  color: $primary;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -29,7 +33,7 @@
   width: 100%;
   transition: color 0.5s ease;
   &:hover {
-    color: darken($light-grey, $amount: 25);
+    color: lighten($primary, $amount: 20);
   }
 }
 .journal__entries {

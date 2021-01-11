@@ -1,6 +1,10 @@
 import types from '../types/types';
 
 //  STATE vacio cuando no este autentificado, si no va a ser un objeto
+// const initialState = {
+//   uid: 123123213,
+//   name: 'Ivan',
+// };
 
 const authReducer = (state = {}, action) => {
   switch (action.type) {

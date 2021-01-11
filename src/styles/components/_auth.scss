@@ -1,6 +1,6 @@
 .auth__main {
   align-items: center;
-  background-color: $primary;
+  background-color:lighten($primary, $amount: 7);
   display: flex;
   justify-content: center;
   margin: 0px;
