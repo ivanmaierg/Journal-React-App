@@ -1,13 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import NotesScreen from '../notes/NotesScreen';
 // import NothingSelected from './NothingSelected';
 import Sidebar from './Sidebar';
 
 const JournalScreen = () => {
-  console.log('hey');
+  const {name} = useSelector(state => state.auth)
   return (
     <div className="journal__main-content">
-      <Sidebar />
+      <Sidebar name={name}/>
       <main>
         {/* <NothingSelected /> */}
         <NotesScreen />

@@ -2,6 +2,7 @@
 import types from '../types/types';
 import { uiStartLoading, uiFinishLoading } from '../actions/ui';
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
+import Swal from 'sweetalert2';
 export const startLoginEmailPassword = (email, password) => {
   return (dispatch) => {
     dispatch(uiStartLoading);
@@ -13,8 +14,14 @@ export const startLoginEmailPassword = (email, password) => {
         dispatch(uiFinishLoading());
       })
       .catch((err) => {
-        console.log(err)  
-        dispatch(uiStartLoading)});
+        Swal.fire({
+          title: 'Error!',
+          text: err,
+          icon: 'error',
+          confirmButtonText: 'ok',
+        });
+        dispatch(uiStartLoading);
+      });
   };
 };
 export const startGoogleLogin = () => {
@@ -22,7 +29,15 @@ export const startGoogleLogin = () => {
     firebase
       .auth()
       .signInWithPopup(googleAuthProvider)
-      .then(({ user }) => dispatch(login(user.uid, user.displayName)));
+      .then(({ user }) => dispatch(login(user.uid, user.displayName)))
+      .catch((err) =>
+        Swal.fire({
+          title: 'Error!',
+          text: err,
+          icon: 'error',
+          confirmButtonText: 'ok',
+        }),
+      );
   };
 };
 export const startRegisterWithEmailPasswordName = (email, password, name) => {
@@ -35,7 +50,14 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
         await user.updateProfile({ displayName: name });
         dispatch(user.uid, user.displayName);
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>
+        Swal.fire({
+          title: 'Error!',
+          text: err,
+          icon: 'error',
+          confirmButtonText: 'ok',
+        }),
+      );
   };
 };
 export const login = (uid, displayName) => {
@@ -45,5 +67,19 @@ export const login = (uid, displayName) => {
       uid,
       displayName,
     },
+  };
+};
+
+export const logout = () => ({
+  type: types.logout,
+});
+export const startLogout = () => {
+  return async (dispatch) => {
+    try {
+      await firebase.auth().signOut();
+      dispatch(logout());
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 };

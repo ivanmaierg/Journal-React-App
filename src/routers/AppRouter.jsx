@@ -10,6 +10,8 @@ import JournalScreen from '../components/Journal/JournalScreen';
 import AuthRouter from './AuthRouter';
 import { useDispatch } from 'react-redux';
 import { login } from '../actions/auth';
+import PrivateRoutes from './PrivateRoutes';
+import PublicRoutes from './PublicRoutes';
 
 const AppRouter = () => {
   const dispatch = useDispatch();
@@ -31,12 +33,17 @@ const AppRouter = () => {
   if (checking.check) {
     return <h1>wait..</h1>;
   }
+  console.log(isLoggedIn);
   return (
     <div className="auth__main">
       <Router>
         <Switch>
-          <Route path="/auth" component={AuthRouter} />
-          <Route exact path="/" component={JournalScreen} />
+          <PublicRoutes path="/auth" isLoggedIn={isLoggedIn} component={AuthRouter} />
+          <PrivateRoutes
+            component={JournalScreen}
+            path="/"
+            isLoggedIn={isLoggedIn}
+          />
           <Redirect to="/auth/login" />
         </Switch>
         {/* {Route path=/ no es exact component={authRuter}}
