@@ -1,5 +1,6 @@
 import { db } from '../firebase/firebase-config';
 import loadNotes from '../helpers/loadNotes';
+import { savedToast, swalError } from '../helpers/toast';
 import types from '../types/types';
 
 export const startNewNote = () => {
@@ -41,18 +42,27 @@ export const startSaveNote = (note) => {
     }
     const noteToFirestore = { ...note };
     delete noteToFirestore.id;
-    await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
-    console.log('antes del dispatch')
-    dispatch(refreshNote(note.id, noteToFirestore));
+    try {
+      await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
+      console.log('antes del dispatch');
+      dispatch(refreshNote(note.id, noteToFirestore));
+      savedToast(noteToFirestore.title);
+    } catch (err) {
+      swalError(err);
+      throw err;
+    }
   };
 };
-export const refreshNote = (id, note) => ({
-  type: types.notesUpdated,
-  payload: {
-    id,
-    note: {
+export const refreshNote = (id, note) => {
+  console.log(note);
+  return {
+    type: types.notesUpdated,
+    payload: {
       id,
-      ...note,
+      note: {
+        id,
+        ...note,
+      },
     },
-  },
-});
+  };
+};
