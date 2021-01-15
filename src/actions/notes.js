@@ -1,6 +1,7 @@
 import { db } from '../firebase/firebase-config';
+import fileUpload from '../helpers/fileUpload';
 import loadNotes from '../helpers/loadNotes';
-import { savedToast, swalError } from '../helpers/toast';
+import { savedToast, swalError, swalLoading } from '../helpers/toast';
 import types from '../types/types';
 
 export const startNewNote = () => {
@@ -66,3 +67,28 @@ export const refreshNote = (id, note) => {
     },
   };
 };
+export const startUploading = (file) => {
+  return async (dispatch, getState) => {
+    //obtengo la nota activa, y le actualizo la url
+    const { active: activeNote } = getState().notes;
+    swalLoading(true);
+    const fileUrl = await fileUpload(file);
+    activeNote.url = fileUrl;
+    dispatch(startSaveNote(activeNote));
+    swalLoading(false);
+  };
+};
+export const startDeleting = (id) => {
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
+    await db.doc(`${uid}/journal/notes/${id}`).delete();
+    dispatch(deleteNote(id));
+  };
+};
+export const deleteNote = (id) => ({
+  type: types.notesDelete,
+  payload: id,
+});
+export const cleaningNotesInLogout = () => ({
+  type: types.notesLogoutCleaning,
+});

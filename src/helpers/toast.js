@@ -31,3 +31,23 @@ export const swalError = (err = '') => {
     confirmButtonText: 'ok',
   });
 };
+export const swalLoading = (state) => {
+  switch (state) {
+    case true:
+      Swal.fire({
+        title: 'Uploading...',
+        text: 'Please wait...',
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        },
+      });
+      break;
+    case false:
+      Swal.close();
+      break;
+    default:
+      break;
+  }
+};

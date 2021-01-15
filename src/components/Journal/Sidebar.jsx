@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { startLogout } from '../../actions/auth';
-import { startNewNote } from '../../actions/notes';
+import { startNewNote, cleaningNotesInLogout } from '../../actions/notes';
 import JournalEntries from './JournalEntries';
 
 const Sidebar = ({ name }) => {
@@ -9,6 +9,7 @@ const Sidebar = ({ name }) => {
 
   const handleLogout = () => {
     dispatch(startLogout());
+    dispatch(cleaningNotesInLogout());
   };
   const handleAddNew = () => {
     dispatch(startNewNote());

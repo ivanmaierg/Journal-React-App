@@ -23,6 +23,13 @@
     transition: background-color 0.4s ease;
   }
 }
+.btn-danger {
+  background-color: red;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: darken($color: red, $amount: 15);
+  }
+}
 .btn-block {
   width: 100%;
 }
