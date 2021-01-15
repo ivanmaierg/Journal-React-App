@@ -2,7 +2,8 @@
 import types from '../types/types';
 import { uiStartLoading, uiFinishLoading } from '../actions/ui';
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
-import Swal from 'sweetalert2';
+import { swalError } from '../helpers/toast';
+
 export const startLoginEmailPassword = (email, password) => {
   return (dispatch) => {
     dispatch(uiStartLoading);
@@ -14,12 +15,7 @@ export const startLoginEmailPassword = (email, password) => {
         dispatch(uiFinishLoading());
       })
       .catch((err) => {
-        Swal.fire({
-          title: 'Error!',
-          text: err,
-          icon: 'error',
-          confirmButtonText: 'ok',
-        });
+        swalError(err);
         dispatch(uiStartLoading);
       });
   };
@@ -30,14 +26,7 @@ export const startGoogleLogin = () => {
       .auth()
       .signInWithPopup(googleAuthProvider)
       .then(({ user }) => dispatch(login(user.uid, user.displayName)))
-      .catch((err) =>
-        Swal.fire({
-          title: 'Error!',
-          text: err,
-          icon: 'error',
-          confirmButtonText: 'ok',
-        }),
-      );
+      .catch((err) => swalError(err));
   };
 };
 export const startRegisterWithEmailPasswordName = (email, password, name) => {
@@ -50,14 +39,7 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
         await user.updateProfile({ displayName: name });
         dispatch(user.uid, user.displayName);
       })
-      .catch((err) =>
-        Swal.fire({
-          title: 'Error!',
-          text: err,
-          icon: 'error',
-          confirmButtonText: 'ok',
-        }),
-      );
+      .catch((err) => swalError(err));
   };
 };
 export const login = (uid, displayName) => {

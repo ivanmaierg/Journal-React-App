@@ -1,16 +1,18 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import { useSelector } from 'react-redux';
 import JournalEntry from './JournalEntry';
 
 const JournalEntries = () => {
-  const entries = [1, 2, 3, 4, 5];
+  const { notes } = useSelector((state) => state.notes);
+
   return (
     <div className="journal__entries">
-      {entries.map((entry) => (
+      {notes.map((note) => (
         <JournalEntry
-          entry={entry}
+          {...note}
           img="https://pbs.twimg.com/profile_images/1327391021647470592/cZ673L7I_400x400.jpg"
-          key={entry}
+          key={note.id}
         />
       ))}
     </div>
