@@ -10,7 +10,7 @@ const types = {
   notesLoad: '[Notes] Load notes',
   notesUpdated: '[Notes] Update note saved',
   notesFileUrl: '[Notes] Update note save2',
-  notesDelete: '[Notes] Updated image url',
-  notesLogoutCleaning:'[Notes Logout Cleaning]'
+  notesDelete: '[Notes] delete note',
+  notesLogoutCleaning: '[Notes Logout Cleaning]',
 };
 export default types;

@@ -29,7 +29,7 @@ const noteReducer = (state = initialState, action) => {
       return {
         ...state,
         active: null,
-        notes: state.notes.filter((state) => state.id !== action.payload),
+        notes: state.notes.filter((state) => state.id !== action.payload.id),
       };
     case types.notesLogoutCleaning:
       state = initialState;

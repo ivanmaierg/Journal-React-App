@@ -81,13 +81,18 @@ export const startUploading = (file) => {
 export const startDeleting = (id) => {
   return async (dispatch, getState) => {
     const { uid } = getState().auth;
-    await db.doc(`${uid}/journal/notes/${id}`).delete();
-    dispatch(deleteNote(id));
+    try {
+      const activeId = id.current;
+      await db.doc(`${uid}/journal/notes/${activeId}`).delete();
+      dispatch(deleteNote(activeId));
+    } catch (err) {
+      throw err;
+    }
   };
 };
 export const deleteNote = (id) => ({
   type: types.notesDelete,
-  payload: id,
+  payload: { id },
 });
 export const cleaningNotesInLogout = () => ({
   type: types.notesLogoutCleaning,

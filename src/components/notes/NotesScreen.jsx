@@ -20,7 +20,7 @@ const NotesScreen = () => {
     dispatch(activeNote(formValues.id, { ...formValues }));
   }, [formValues, dispatch]);
   const handleDelete = () => {
-    dispatch(startDeleting(activeNote));
+    dispatch(startDeleting(activeId));
   };
   return (
     <div className="notes__main-content">
