@@ -1,17 +1,24 @@
+/* eslint-disable no-useless-catch */
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCsxTG_kb8EcJ7zyCz9pvEFZT8dB2rVQCQ',
-  authDomain: 'journal-app-herrera.firebaseapp.com',
-  projectId: 'journal-app-herrera',
-  storageBucket: 'journal-app-herrera.appspot.com',
-  messagingSenderId: '160590919866',
-  appId: '1:160590919866:web:08b6fe587db5658148ea83',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
+
+try {
+  firebase.initializeApp(firebaseConfig);
+} catch (error) {
+  throw error;
+}
+
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
