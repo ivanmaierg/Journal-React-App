@@ -1,11 +1,14 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable consistent-return */
 /* eslint-disable semi */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useForm from '../../hooks/useForm';
 import validator from 'validator';
 import { useDispatch, useSelector } from 'react-redux';
+import useForm from '../../hooks/useForm';
 import { removeError, setError } from '../../actions/ui';
 import { startRegisterWithEmailPasswordName } from '../../actions/auth';
+
 const RegisterScreen = () => {
   const dispatch = useDispatch();
   const { msgError } = useSelector((state) => state.ui);
@@ -17,12 +20,14 @@ const RegisterScreen = () => {
   };
 
   const [formValues, handleInputChange] = useForm({ ...initialValues });
-  const { name, email, password, password2 } = formValues;
+  const {
+    name, email, password, password2,
+  } = formValues;
 
   const handleRegistration = (e) => {
     e.preventDefault();
     console.log(console.log(formValues));
-    let inputValidate = isFormValid();
+    const inputValidate = isFormValid();
     if (!inputValidate.state) {
       console.log({ inputValidate });
       return dispatch(setError(inputValidate.msg));
@@ -36,17 +41,17 @@ const RegisterScreen = () => {
         state: false,
         msg: 'name is empty',
       };
-    } else if (!validator.isEmail(email)) {
+    } if (!validator.isEmail(email)) {
       return {
         state: false,
         msg: 'email is no valid',
       };
-    } else if (password !== password2) {
+    } if (password !== password2) {
       return {
         state: false,
         msg: 'The passwords fields are not equal',
       };
-    } else if (password.length < 5) {
+    } if (password.length < 5) {
       return {
         state: false,
         msg: 'The password should be at least 6 characters long',

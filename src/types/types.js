@@ -12,5 +12,6 @@ const types = {
   notesFileUrl: '[Notes] Update note save2',
   notesDelete: '[Notes] delete note',
   notesLogoutCleaning: '[Notes Logout Cleaning]',
+  notesStartNewNote: '[Notes StartNewNote]',
 };
 export default types;

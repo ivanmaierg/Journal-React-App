@@ -4,15 +4,12 @@ const setError = (err) => ({
   type: types.uiSetError,
   payload: err,
 });
-const removeError = (err) => ({
+const removeError = () => ({
   type: types.uiRemoveError,
-  payload: err,
 });
-const uiStartLoading = () => {
-  return { type: types.uiStartLoading, payload: { loading: true } };
-};
-const uiFinishLoading = () => {
-  return { type: types.uiFinishLoading, payload: { loading: false } };
-};
+const uiStartLoading = () => ({ type: types.uiStartLoading, payload: { loading: true } });
+const uiFinishLoading = () => ({ type: types.uiFinishLoading, payload: { loading: false } });
 
-export { setError, removeError, uiStartLoading, uiFinishLoading };
+export {
+  setError, removeError, uiStartLoading, uiFinishLoading,
+};

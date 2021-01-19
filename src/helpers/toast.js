@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+
 const Toast = Swal.mixin({
   toast: true,
   position: 'bottom-end',
@@ -20,7 +21,13 @@ export const loginToast = () => {
 export const savedToast = (title = '') => {
   Toast.fire({
     icon: 'success',
-    title: title + ' saved!',
+    title: `${title} saved!`,
+  });
+};
+export const deleteToast = (title = 'The note') => {
+  Toast.fire({
+    icon: 'success',
+    title: `${title} was deleted`,
   });
 };
 export const swalError = (err = '') => {

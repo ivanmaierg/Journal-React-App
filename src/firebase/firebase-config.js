@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCsxTG_kb8EcJ7zyCz9pvEFZT8dB2rVQCQ',
   authDomain: 'journal-app-herrera.firebaseapp.com',
@@ -14,4 +15,4 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-export { db, googleAuthProvider, firebase };   
+export { db, googleAuthProvider, firebase };

@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+/* eslint-disable no-shadow */
+/* eslint-disable no-param-reassign */
 import types from '../types/types';
 
 const initialState = {
@@ -13,6 +16,12 @@ const noteReducer = (state = initialState, action) => {
           ...action.payload,
         },
       };
+    case types.notesAddNew:
+      return {
+        ...state,
+        notes: [action.payload, ...state.notes],
+      };
+
     case types.notesLoad:
       return {
         ...state,
@@ -21,9 +30,7 @@ const noteReducer = (state = initialState, action) => {
     case types.notesUpdated:
       return {
         ...state,
-        notes: state.notes.map((note) =>
-          note.id === action.payload.id ? action.payload.note : note,
-        ),
+        notes: state.notes.map((note) => (note.id === action.payload.id ? action.payload.note : note)),
       };
     case types.notesDelete:
       return {

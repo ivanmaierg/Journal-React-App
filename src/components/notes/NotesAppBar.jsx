@@ -26,7 +26,8 @@ const NotesAppBar = () => {
         style={{ display: 'none' }}
         onChange={handleFileChange}
         id="FileSelector"
-      />{' '}
+      />
+      {' '}
       <div className="notes__appbar-buttons">
         <button
           type="button"

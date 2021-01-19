@@ -47,7 +47,7 @@ const NotesScreen = () => {
           </div>
         )}
       </div>
-      <button className="btn btn-danger" onClick={handleDelete}>
+      <button className="btn btn-danger" onClick={handleDelete} type="button">
         Delete
       </button>
     </div>

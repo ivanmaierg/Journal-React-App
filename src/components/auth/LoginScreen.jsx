@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable consistent-return */
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-fallthrough */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,6 +30,7 @@ const LoginScreen = () => {
     }
     dispatch(removeError());
     dispatch(startLoginEmailPassword(email, password));
+    return null;
   };
   const handleGoogleLogin = () => {
     dispatch(startGoogleLogin());
@@ -68,7 +73,11 @@ const LoginScreen = () => {
           value={password}
           onChange={handleInputChange}
         />
-        <button className="btn btn-primary point" type="submit" disabled={loadingState}>
+        <button
+          className="btn btn-primary point"
+          type="submit"
+          disabled={loadingState}
+        >
           Login
         </button>
       </form>

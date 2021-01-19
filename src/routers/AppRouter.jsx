@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { firebase } from '../firebase/firebase-config';
 import JournalScreen from '../components/Journal/JournalScreen';
 import AuthRouter from './AuthRouter';
-import { useDispatch } from 'react-redux';
 import { login } from '../actions/auth';
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './PublicRoutes';
@@ -26,7 +26,6 @@ const AppRouter = () => {
       }
       setChecking({ check: false });
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checking.check]);
   if (checking.check) {
     return <h1>wait..</h1>;

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -7,8 +8,8 @@ const JournalEntries = () => {
   const { notes } = useSelector((state) => state.notes);
   return (
     <div className="journal__entries">
-      {notes &&
-        notes.map((note) => (
+      {notes
+        && notes.map((note) => (
           <JournalEntry
             {...note}
             img="https://pbs.twimg.com/profile_images/1327391021647470592/cZ673L7I_400x400.jpg"

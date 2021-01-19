@@ -1,13 +1,20 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { activeNote } from '../../actions/notes';
-const JournalEntry = ({ id, date, title, body, url }) => {
+
+const JournalEntry = ({
+  id, date, title, body, url,
+}) => {
   const dispatch = useDispatch();
   const noteDate = moment(date);
   const handleEntryClick = () => {
-    dispatch(activeNote(id, { date, title, body, url  }));
+    dispatch(activeNote(id, {
+      date, title, body, url,
+    }));
   };
   return (
     <div className="journal__entry pointer" onClick={handleEntryClick}>

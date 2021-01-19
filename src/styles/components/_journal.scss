@@ -50,6 +50,7 @@
   flex: 1 1 auto;
   margin-top: 30px;
   margin-right: 10px;
+  transition: all 0.3s ease-in-out;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -62,6 +63,7 @@
   display: flex;
   margin-bottom: 10px;
   overflow: hidden;
+  animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .journal__entry-picture {
   height: 75px;
