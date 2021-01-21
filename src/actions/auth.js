@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 /* eslint-disable no-use-before-define */
 import types from '../types/types';
 import { uiStartLoading, uiFinishLoading } from './ui';
@@ -26,11 +27,13 @@ export const startGoogleLogin = () => (dispatch) => {
     .then(({ user }) => dispatch(login(user.uid, user.displayName)))
     .catch((err) => swalError(err));
 };
-export const startRegisterWithEmailPasswordName = (email, password, name) => (dispatch) => {
+export const startRegisterWithEmailPasswordName = (email, password, name) => (
+  dispatch,
+) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
-    .catch((err) => console.log(err))
+    .catch((err) => err)
     .then(async ({ user }) => {
       await user.updateProfile({ displayName: name });
       dispatch(user.uid, user.displayName);
@@ -54,6 +57,6 @@ export const startLogout = () => async (dispatch) => {
     dispatch(logout());
     dispatch(cleaningNotesInLogout());
   } catch (e) {
-    console.log(e.message);
+    throw e;
   }
 };

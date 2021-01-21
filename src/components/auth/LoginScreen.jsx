@@ -14,7 +14,6 @@ import { removeError, setError } from '../../actions/ui';
 const LoginScreen = () => {
   const dispatch = useDispatch();
   const { msgError, loadingState } = useSelector((state) => state.ui);
-  console.log(loadingState);
   const [formValues, handleInputChange] = useForm({
     email: '',
     password: '',
@@ -25,7 +24,6 @@ const LoginScreen = () => {
     const inputValidation = inputIsValid('email') || inputIsValid('password');
 
     if (inputValidation) {
-      console.log(inputValidation);
       return dispatch(setError(inputValidation));
     }
     dispatch(removeError());
@@ -47,7 +45,6 @@ const LoginScreen = () => {
           return 'password is empty';
         }
       default:
-        console.log('ay');
         break;
     }
   };

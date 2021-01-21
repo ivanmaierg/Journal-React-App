@@ -13,7 +13,6 @@ import { startLoadingNotes } from '../actions/notes';
 const AppRouter = () => {
   const dispatch = useDispatch();
   const [checking, setChecking] = useState({ check: true });
-
   const [isLoggedIn, setIsLoggedIn] = useState({ login: true });
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (user) => {
@@ -30,7 +29,6 @@ const AppRouter = () => {
   if (checking.check) {
     return <h1>wait..</h1>;
   }
-  console.log(isLoggedIn);
   return (
     <div className="auth__main">
       <Router>
@@ -47,8 +45,6 @@ const AppRouter = () => {
           />
           <Redirect to="/auth/login" />
         </Switch>
-        {/* {Route path=/ no es exact component={authRuter}}
-      {MainRoute <Route exact path="/" component={JournalScreen}} */}
       </Router>
     </div>
   );

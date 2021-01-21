@@ -22,7 +22,7 @@ export const startNewNote = () => async (dispatch, getState) => {
     body: '',
     date: new Date().getTime(),
   };
-  // espera q se haga la insercion
+  // espera a que se se haga la insercion
   const docRef = await db.collection(`${uid}/journal/notes`).add(newNote);
   dispatch(activeNote(docRef.id, newNote));
   dispatch(addNewNote(docRef.id, newNote));
@@ -59,7 +59,6 @@ export const startSaveNote = (note) => async (dispatch, getState) => {
   delete noteToFirestore.id;
   try {
     await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
-    console.log('antes del dispatch');
     dispatch(refreshNote(note.id, noteToFirestore));
     savedToast(noteToFirestore.title);
   } catch (err) {
@@ -67,19 +66,16 @@ export const startSaveNote = (note) => async (dispatch, getState) => {
     throw err;
   }
 };
-export const refreshNote = (id, note) => {
-  console.log(note);
-  return {
-    type: types.notesUpdated,
-    payload: {
+export const refreshNote = (id, note) => ({
+  type: types.notesUpdated,
+  payload: {
+    id,
+    note: {
       id,
-      note: {
-        id,
-        ...note,
-      },
+      ...note,
     },
-  };
-};
+  },
+});
 export const startUploading = (file) => async (dispatch, getState) => {
   // obtengo la nota activa, y le actualizo la url
   const { active: activeNote } = getState().notes;

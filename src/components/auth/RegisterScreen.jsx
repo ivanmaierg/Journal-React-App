@@ -26,10 +26,8 @@ const RegisterScreen = () => {
 
   const handleRegistration = (e) => {
     e.preventDefault();
-    console.log(console.log(formValues));
     const inputValidate = isFormValid();
     if (!inputValidate.state) {
-      console.log({ inputValidate });
       return dispatch(setError(inputValidate.msg));
     }
     dispatch(removeError());

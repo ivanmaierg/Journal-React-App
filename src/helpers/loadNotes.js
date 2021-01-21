@@ -9,7 +9,6 @@ const loadNotes = async (uid) => {
       ...snapChild.data(),
     });
   });
-  console.log(notes);
   return notes;
 };
 export default loadNotes;

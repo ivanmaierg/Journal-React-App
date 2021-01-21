@@ -9,7 +9,6 @@ const fileUpload = async (file) => {
     body: formData,
   });
   if (!resp.ok) {
-    console.log('error in upload image');
     return null;
   }
   const cloudResp = await resp.json();
