@@ -1,0 +1,36 @@
+.btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 12px;
+  padding: 7px 10px 7px 10px;
+  &:focus {
+    outline: none;
+  }
+  &hover {
+    color: darken($color: $primary, $amount: 50);
+  }
+}
+.btn-primary {
+  background-color: $primary;
+  border-radius: 2px;
+  width: 100%;
+  &:disabled {
+    background-color: lighten($color: $primary, $amount: 15);
+  }
+  &:hover {
+    background-color: darken($color: $primary, $amount: 15);
+    transition: background-color 0.4s ease;
+  }
+}
+.btn-danger {
+  background-color: red;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: darken($color: red, $amount: 15);
+  }
+}
+.btn-block {
+  width: 100%;
+}
+//Google Button
