@@ -1,6 +1,10 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Acerca de:
+Pequeño proyecto de una spa que funciona como un diario, realiza un crud utilizando firebase como db.
+Utiliza redux para el manejo del estado global.
+Posee autentificación y manejo de usuarios.
 
 ## Available Scripts
 
